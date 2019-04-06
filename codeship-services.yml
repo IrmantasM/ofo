@@ -2,13 +2,10 @@ web-codeship-example-node:
   build: .
   depends_on:
     - postgres
-  environment:
-    DATABASE_URL: "postgres://todoapp@postgres/todos"
+  encrypted_env_file: deployment.env.encrypted
 postgres:
   image: healthcheck/postgres:alpine
-  environment:
-    POSTGRES_USER: todoapp
-    POSTGRES_DB: todos
+  encrypted_env_file: deployment.env.encrypted
 codeship-heroku-deployment:
   image: codeship/heroku-deployment
   encrypted_env_file: deployment.env.encrypted
